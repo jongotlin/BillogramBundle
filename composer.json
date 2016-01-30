@@ -1,0 +1,18 @@
+{
+    "name": "jongotlin/billogram-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jon Gotlin",
+            "email": "jon@jon.se"
+        }
+    ],
+    "require": {
+        "billogram/billogram_api": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "JGI\\BillogramBundle\\": ""
+        }
+    }
+}
