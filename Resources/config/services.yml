@@ -1,0 +1,9 @@
+
+services:
+    jgi.billogram:
+        class: Billogram\Api
+        arguments:
+            - %billogram.id%
+            - %billogram.password%
+            - null
+            - %billogram.url%
