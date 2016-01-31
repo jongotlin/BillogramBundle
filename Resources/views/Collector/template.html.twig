@@ -1,0 +1,34 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        {{ include('@JGIBillogram/Collector/icon.svg') }}
+        <span class="sf-toolbar-value">{{ collector.apiCallsCount }}</span>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            <b>Billogram api calls</b>
+            <span class="sf-toolbar-status{% if collector.hasErrors %} sf-toolbar-status-red{% endif %}">{{ collector.apiCallsCount }}</span>
+        </div>
+
+        <div class="sf-toolbar-info-piece">
+            <b>Sandbox</b>
+            <span>{{ collector.isSandbox ? 'Yes' : 'No' }}</span>
+        </div>
+
+        {% for i, apiCall in collector.apiCalls %}
+            <div class="sf-toolbar-info-piece">
+                <b>Api call {{ i + 1 }}</b>
+                <span>{{ apiCall.path }}
+                    <span
+                        class="sf-toolbar-status{% if apiCall.statusCode != 200 %} sf-toolbar-status-red{% endif %}"
+                    >{{ apiCall.statusCode }}</span>
+                </span>
+            </div>
+        {% endfor %}
+
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: false }) }}
+{% endblock %}

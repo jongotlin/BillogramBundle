@@ -24,11 +24,13 @@ class JGIBillogramExtension extends Extension
         $container->setParameter('billogram.id', $config['id']);
         $container->setParameter('billogram.password', $config['password']);
         $container->setParameter('billogram.url', Api::API_URL_BASE);
+        $container->setParameter('billogram.sandbox', false);
 
         if ($config['sandbox']) {
             $container->setParameter('billogram.id', $config['sandbox_id']);
             $container->setParameter('billogram.password', $config['sandbox_password']);
             $container->setParameter('billogram.url', 'https://sandbox.billogram.com/api/v2');
+            $container->setParameter('billogram.sandbox', true);
         }
     }
 }

@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "billogram/billogram_api": "^1.12"
+        "php": "^7.0",
+        "billogram/billogram_api": "dev-event-dispatcher"
     },
     "autoload": {
         "psr-4": {

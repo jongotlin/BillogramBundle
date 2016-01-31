@@ -7,3 +7,34 @@ services:
             - %billogram.password%
             - null
             - %billogram.url%
+            - ~
+            - "@event_dispatcher"
+
+    jgi.billogram.collector:
+        class: JGI\BillogramBundle\DataCollector\ApiCallCollector
+        arguments:
+            - "@jgi.billogram.collector.logger"
+            - %billogram.sandbox%
+        public: false
+        tags:
+            -
+                name: data_collector
+                template: 'JGIBillogramBundle:Collector:template.html.twig'
+                id: 'jgi.billogram.collector'
+
+    jgi.billogram.listener.logger:
+        class: JGI\BillogramBundle\Listener\LoggerListener
+        arguments:
+            - "@logger"
+        tags:
+            - { name: kernel.event_listener, event: billogram.request, method: whenRequestIsProcessed }
+
+    jgi.billogram.listener.data_collector:
+        class: JGI\BillogramBundle\Listener\DataCollectorListener
+        arguments:
+            - "@jgi.billogram.collector.logger"
+        tags:
+            - { name: kernel.event_listener, event: billogram.request, method: whenRequestIsProcessed }
+
+    jgi.billogram.collector.logger:
+        class: JGI\BillogramBundle\DataCollector\Logger
