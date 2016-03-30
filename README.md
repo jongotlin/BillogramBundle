@@ -47,3 +47,7 @@ billogram_sandbox_id: "1725-dqst7op6"
 billogram_sandbox_password: "da2e4561a99e74f7872222ad310b81ac"
 billogram_sandbox: true
 ```
+
+```php
+$this->getContainer()->get('jgi.billogram'); // Billogram\Api
+```
